@@ -71,14 +71,14 @@ def show_json(request):
     data = [
         {
             'id': str(news.id),
-            'title': news.title,
-            'content': news.content,
-            'category': news.category,
-            'thumbnail': news.thumbnail,
-            'news_views': news.news_views,
-            'created_at': news.created_at.isoformat() if news.created_at else None,
+            'title': news.title or "",
+            'content': news.content or "",
+            'category': news.category or "",
+            'thumbnail': news.thumbnail if news.thumbnail else "",
+            'news_views': news.news_views or 0,
+            'created_at': news.created_at.isoformat() if news.created_at else "",
             'is_featured': news.is_featured,
-            'user_id': news.user_id,
+            'user_id': news.user.id if news.user else None,
         }
         for news in news_list
     ]
